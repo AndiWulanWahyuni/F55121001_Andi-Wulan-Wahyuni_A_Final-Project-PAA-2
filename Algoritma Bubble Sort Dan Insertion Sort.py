@@ -1,4 +1,5 @@
 import time
+import copy
 
 def bubble_sort(arr):
     n = len(arr)
@@ -44,11 +45,11 @@ def print_iterations(arr, sort_type):
 def print_execution_time(time_taken, sort_type):
     print(f"\nWaktu komputasi pengurutan ({sort_type}): {time_taken:.6f} detik")
 
-def print_before_after(arr, sort_type):
+def print_before_after(arr, sorted_arr, sort_type):
     print(f"\nSebelum pengurutan ({sort_type}):")
     print(arr)
     print("\nSetelah pengurutan:")
-    print(arr)
+    print(sorted_arr)
 
 def analyze_algorithm():
     arr = [12, 99, 62, 15, 20, 95, 39, 48, 3, 24, 8, 43, 74, 19, 97, 33, 49, 68, 55, 33, 90, 90, 7, 26, 85, 46, 39, 40, 9,
@@ -61,13 +62,15 @@ def analyze_algorithm():
     choice = input("\nPilih pengurutan (bubble/insertion): ")
 
     if choice.lower() == "bubble":
-        sorted_arr, time_taken = bubble_sort(arr)
-        print_before_after(sorted_arr, "Bubble Sort")
+        arr_copy = copy.deepcopy(arr)
+        sorted_arr, time_taken = bubble_sort(arr_copy)
+        print_before_after(arr, sorted_arr, "Bubble Sort")
         print_iterations(sorted_arr, "Bubble Sort")
         print_execution_time(time_taken, "Bubble Sort")
     elif choice.lower() == "insertion":
-        sorted_arr, time_taken = insertion_sort(arr)
-        print_before_after(sorted_arr, "Insertion Sort")
+        arr_copy = copy.deepcopy(arr)
+        sorted_arr, time_taken = insertion_sort(arr_copy)
+        print_before_after(arr, sorted_arr, "Insertion Sort")
         print_iterations(sorted_arr, "Insertion Sort")
         print_execution_time(time_taken, "Insertion Sort")
     else:
